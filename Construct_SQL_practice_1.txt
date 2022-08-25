@@ -540,3 +540,192 @@ mysql> SELECT * FROM DEPOSIT;
 | 105   | SANDIP  | KAROLBAGH |   2000 | 1996-03-31 |
 +-------+---------+-----------+--------+------------+
 7 rows in set (0.00 sec)
+
+
+============================================================================================================================================
+
+
+-----------------------------------------------------------> Basic SQL II <-----------------------------------------------------------------
+
+
+
+
+
+
+[.1.] Count the number of students of each department.
+
+
+mysql> select branch, count(name) from student group by branch;
++--------+-------------+
+| branch | count(name) |
++--------+-------------+
+| cse    |           2 |
+| etc    |           3 |
+| eee    |           1 |
+| bme    |           1 |
++--------+-------------+
+4 rows in set (0.10 sec)
+
+
+==================================================================================================================================================
+
+
+ 
+
+[.2.] Count the number of students of each department where the department name starts with ‘E’.
+
+
+mysql> select branch, count(name) from student where branch like '%e' group by branch;
++--------+-------------+
+| branch | count(name) |
++--------+-------------+
+| cse    |           2 |
+| eee    |           1 |
+| bme    |           1 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+
+
+==================================================================================================================================================
+
+
+[.3.] Add a field called MARKS to the table STUDENT which can hold a number upto 8 digit length.
+
+
+mysql> alter table student add Marks varchar(8);
+Query OK, 0 rows affected (1.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from student;
++--------+--------+--------+---------+-------+
+| name   | rollNo | branch | city    | Marks |
++--------+--------+--------+---------+-------+
+| vijaya |    150 | cse    | chennai | NULL  |
+| sita   |    202 | etc    | kolkata | NULL  |
+| Ravi   |    300 | eee    | Delhi   | NULL  |
+| basu   |    165 | etc    | chennai | NULL  |
+| Rasmi  |    107 | etc    | rkl     | NULL  |
+| karan  |    111 | cse    | ctc     | NULL  |
+| rekha  |    117 | bme    | Bbsr    | NULL  |
++--------+--------+--------+---------+-------+
+7 rows in set (0.00 sec)
+
+
+==================================================================================================================================================
+
+
+[.4.] Modify the field :”NAME” of the table STUDENT to hold a maximum of 25 character.
+
+
+mysql> alter table student modify  name varchar(25);
+Query OK, 0 rows affected (0.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| name   | varchar(25) | YES  |     | NULL    |       |
+| rollNo | int         | YES  |     | NULL    |       |
+| branch | varchar(20) | YES  |     | NULL    |       |
+| city   | varchar(20) | YES  |     | NULL    |       |
+| Marks  | varchar(8)  | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.05 sec)
+
+
+
+==================================================================================================================================================
+
+
+
+[.5.] Delete all rows from the table STUDENT where branch is ETC.
+
+
+mysql> delete from student where branch = 'etc';
+Query OK, 3 rows affected (0.15 sec)
+
+mysql> select * from student;
++--------+--------+--------+---------+-------+
+| name   | rollNo | branch | city    | Marks |
++--------+--------+--------+---------+-------+
+| vijaya |    150 | cse    | chennai | NULL  |
+| Ravi   |    300 | eee    | Delhi   | NULL  |
+| karan  |    111 | cse    | ctc     | NULL  |
+| rekha  |    117 | bme    | Bbsr    | NULL  |
++--------+--------+--------+---------+-------+
+4 rows in set (0.00 sec)
+
+
+==================================================================================================================================================
+
+
+
+[.6.] Rename the table STUDENT to STUDINFORMATION.
+
+
+
+mysql> alter table student rename STUDENTINFORMATION;
+Query OK, 0 rows affected (0.56 sec)
+
+mysql> select * from studentinformation;
++--------+--------+--------+---------+-------+
+| name   | rollNo | branch | city    | Marks |
++--------+--------+--------+---------+-------+
+| vijaya |    150 | cse    | chennai | NULL  |
+| Ravi   |    300 | eee    | Delhi   | NULL  |
+| karan  |    111 | cse    | ctc     | NULL  |
+| rekha  |    117 | bme    | Bbsr    | NULL  |
++--------+--------+--------+---------+-------+
+4 rows in set (0.05 sec)
+
+
+==================================================================================================================================================
+
+
+7. Delete all the data part from the table STUDENT.
+
+mysql> delete from studentinformation;
+Query OK, 4 rows affected (0.10 sec)
+
+
+
+mysql> select * from studentinformation;
+Empty set (0.00 sec)
+
+
+
+==================================================================================================================================================
+
+
+[.8.] Destroy the table STUDENT.
+
+
+
+mysql> drop table studentinformation;
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> desc studentinformation;
+ERROR 1146 (42S02): Table 'constructdb.studentinformation' doesn't exist
+
+
+
+
+
+
+==================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
